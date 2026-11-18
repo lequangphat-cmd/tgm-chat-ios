@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%ld active bots</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@bots@</string>
+		<key>bots</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld aktiivne robot</string>
+			<key>other</key>
+			<string>%ld aktiivset robotit</string>
+		</dict>
+	</dict>
+	<key>%d votes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@votes@</string>
+		<key>votes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d hääl</string>
+			<key>other</key>
+			<string>%d häält</string>
+		</dict>
+	</dict>
+	<key>%ld participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld osaleja</string>
+			<key>other</key>
+			<string>%ld osalejat</string>
+		</dict>
+	</dict>
+	<key>%ld participants in this call</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participantsincall@</string>
+		<key>participantsincall</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Selles kõnes on %ld osaleja</string>
+			<key>other</key>
+			<string>Selles kõnes on %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>%d minutes ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@minutes@</string>
+		<key>minutes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d minut tagasi</string>
+			<key>other</key>
+			<string>%d minutit tagasi</string>
+		</dict>
+	</dict>
+	<key>%d hours ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hours@</string>
+		<key>hours</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d tund tagasi</string>
+			<key>other</key>
+			<string>%d tundi tagasi</string>
+		</dict>
+	</dict>
+	<key>%d days ago</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d päev tagasi</string>
+			<key>other</key>
+			<string>%d päeva tagasi</string>
+		</dict>
+	</dict>
+	<key>%ld notifications</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@notifications@</string>
+		<key>notifications</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld teavitus</string>
+			<key>other</key>
+			<string>%ld teavitust</string>
+		</dict>
+	</dict>
+	<key>You have %ld pending invitations</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@pendinginvitations@</string>
+		<key>pendinginvitations</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sul on %ld ootel kutse</string>
+			<key>other</key>
+			<string>Sul on %ld ootel kutset</string>
+		</dict>
+	</dict>
+	<key>%d options</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@options@</string>
+		<key>options</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%d valik</string>
+			<key>other</key>
+			<string>%d valikut</string>
+		</dict>
+	</dict>
+	<key>This conversation will be automatically deleted for everyone in %ld days of no activity.</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>See vestlus kustub automaatselt kõigi osalejate jaoks, kui siin pole olnud tegevust %ld päeva jooksul.</string>
+			<key>other</key>
+			<string>See vestlus kustub automaatselt kõigi osalejate jaoks, kui siin pole olnud tegevust %ld päeva jooksul.</string>
+		</dict>
+	</dict>
+	<key>%ld replies</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replies@</string>
+		<key>replies</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld vastus</string>
+			<key>other</key>
+			<string>%ld vastust</string>
+		</dict>
+	</dict>
+	<key>Password needs to be at least %d characters long</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@characters@</string>
+		<key>characters</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Salasõna peab olema vähemalt %d sümbol pikk</string>
+			<key>other</key>
+			<string>Salasõna peab olema vähemalt %d sümbolit pikk</string>
+		</dict>
+	</dict>
+	<key>Uploading %ld elements</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@uploadingelements@</string>
+		<key>uploadingelements</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Laadin üles %ld elemendi</string>
+			<key>other</key>
+			<string>Laadin üles %ld elementi</string>
+		</dict>
+	</dict>
+	<key>%ld conversations with unread messages</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@conversations@</string>
+		<key>conversations</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld vestlus lugemata sõnumitega</string>
+			<key>other</key>
+			<string>%ld vestlust lugemata sõnumitega</string>
+		</dict>
+	</dict>
+	<key>%ld days</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@days@</string>
+		<key>days</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld päev</string>
+			<key>other</key>
+			<string>%ld päeva</string>
+		</dict>
+	</dict>
+	<key>%ld hours</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hours@</string>
+		<key>hours</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld tund</string>
+			<key>other</key>
+			<string>%ld tundi</string>
+		</dict>
+	</dict>
+	<key>%ld minutes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@minutes@</string>
+		<key>minutes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%ld minut</string>
+			<key>other</key>
+			<string>%ld minutit</string>
+		</dict>
+	</dict>
+	<key>%1$@, %2$@, %3$@ and %4$ld others will receive invitations</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$@, %3$@ and %4$#@others@</string>
+		<key>others</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%4$ld muu osaleja saab kutse</string>
+			<key>other</key>
+			<string>%4$ld muud osalejat saavad kutsed</string>
+		</dict>
+	</dict>
+	<key>%1$@, %2$@, %3$@ and %4$ld others are typing…</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%1$@, %2$@, %3$@ and %4$#@others@</string>
+		<key>others</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>%4$ld muu osaleja kirjutab…</string>
+			<key>other</key>
+			<string>%4$ld muud osalejat kirjutavad…</string>
+		</dict>
+	</dict>
+	<key>You added {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sa lisasid kasutaja {user0} ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Sa lisasid kasutaja {user0} ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>An administrator added you and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja lisas sinu ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Peakasutaja lisas sinu ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>An administrator added {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja lisas kasutaja „{user0}“ ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Peakasutaja lisas kasutaja „{user0}“ ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>{actor0} added you and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} lisas sinu ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>{actor0} lisas sinu ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>{actor0} added {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} lisas kasutaja „{user0}“ ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>{actor0} lisas kasutaja „{user0}“ ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>You removed {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sa eemaldasid kasutaja „{user0}“ ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Sa eemaldasid kasutaja „{user0}“ ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>An administrator removed you and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja eemaldas sinu ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Peakasutaja eemaldas sinu ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>An administrator removed {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja eemaldas kasutaja „{user0}“ ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>Peakasutaja eemaldas kasutaja „{user0}“ ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>{actor0} removed you and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} eemaldas sinu ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>{actor0} eemaldas sinu ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>{actor0} removed {user0} and %ld more participants</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} eemaldas kasutaja „{user0}“ ja veel %ld osaleja</string>
+			<key>other</key>
+			<string>{actor0} eemaldas kasutaja „{user0}“ ja veel %ld osalejat</string>
+		</dict>
+	</dict>
+	<key>You promoted {user0} and %ld more participants to moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sina määrasid kasutaja „{user0}“ ja veel %ld osaleja moderaatoriteks</string>
+			<key>other</key>
+			<string>Sina määrasid kasutaja „{user0}“ ja veel %ld osalejat moderaatoriteks</string>
+		</dict>
+	</dict>
+	<key>An administrator promoted you and %ld more participants to moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja määras sinu ja veel %ld osaleja moderaatoriteks</string>
+			<key>other</key>
+			<string>Peakasutaja määras sinu ja veel %ld osalejat moderaatoriteks</string>
+		</dict>
+	</dict>
+	<key>An administrator promoted {user0} and %ld more participants to moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja määras kasutaja „{user0}“ ja veel %ld osaleja moderaatoriteks</string>
+			<key>other</key>
+			<string>Peakasutaja määras kasutaja „{user0}“ ja veel %ld osalejat moderaatoriteks</string>
+		</dict>
+	</dict>
+	<key>{actor0} promoted you and %ld more participants to moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} määras sinu ja veel %ld osaleja moderaatoriteks</string>
+			<key>other</key>
+			<string>{actor0} määras sinu ja veel %ld osalejat moderaatoriteks</string>
+		</dict>
+	</dict>
+	<key>{actor0} promoted {user0} and %ld more participants to moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} määras kasutaja „{user0}“ ja veel %ld osaleja moderaatoriteks</string>
+			<key>other</key>
+			<string>{actor0} määras kasutaja „{user0}“ ja veel %ld osalejat moderaatoriteks</string>
+		</dict>
+	</dict>
+	<key>You demoted {user0} and %ld more participants from moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sina võtsid kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+			<key>other</key>
+			<string>Sina võtsid kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+		</dict>
+	</dict>
+	<key>An administrator demoted you and %ld more participants from moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja võttis sinult ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+			<key>other</key>
+			<string>Peakasutaja võttis sinult ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+		</dict>
+	</dict>
+	<key>An administrator demoted {user0} and %ld more participants from moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Peakasutaja võttis kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+			<key>other</key>
+			<string>Peakasutaja võttis kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+		</dict>
+	</dict>
+	<key>{actor0} demoted you and %ld more participants from moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} võttis sinult ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+			<key>other</key>
+			<string>{actor0} võttis sinult ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+		</dict>
+	</dict>
+	<key>{actor0} demoted {user0} and %ld more participants from moderators</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} võtis kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+			<key>other</key>
+			<string>{actor0} võtis kasutajalt „{user0}“ ja veel %ld-lt osalejalt moderaatori õigused ära</string>
+		</dict>
+	</dict>
+	<key>You and %ld more participants joined the call</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sina ja veel %ld osaleja liitusid kõnega</string>
+			<key>other</key>
+			<string>Sina ja veel %ld osalejat liitusid kõnega</string>
+		</dict>
+	</dict>
+	<key>{actor0} and %ld more participants joined the call</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} ja veel %ld osalejat liitusid kõnega</string>
+			<key>other</key>
+			<string>{actor0} ja veel %ld osalejat liitusid kõnega</string>
+		</dict>
+	</dict>
+	<key>You and %ld more participants left the call</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>Sina ja veel %ld osalejat lahkusid kõnest</string>
+			<key>other</key>
+			<string>Sina ja veel %ld osalejat lahkusid kõnest</string>
+		</dict>
+	</dict>
+	<key>{actor0} and %ld more participants left the call</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@participants@</string>
+		<key>participants</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>one</key>
+			<string>{actor0} ja veel %ld osaleja lahkusid kõnest</string>
+			<key>other</key>
+			<string>{actor0} ja veel %ld osalejat lahkusid kõnest</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

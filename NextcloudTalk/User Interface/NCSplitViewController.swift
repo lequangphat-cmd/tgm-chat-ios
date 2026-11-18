@@ -1,0 +1,254 @@
+//
+// SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+// SPDX-License-Identifier: GPL-3.0-or-later
+//
+
+@objcMembers class NCSplitViewController: UISplitViewController, UISplitViewControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+
+    // Tracks a chat that was requested via showDetailViewController but not yet confirmed
+    // on screen. A pop to the rooms list can race a pending presentation (e.g. tapping a
+    // push notification while a menu is open, see #2328) — in that case the didShow of
+    // RoomsTableViewController must not tear the pending chat down.
+    private weak var pendingChatViewController: ChatViewController?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+        self.preferredDisplayMode = .oneBesideSecondary
+
+        // As we always show the columns on iPads, we don't need gesture support
+        self.presentsWithGesture = false
+
+        for viewController in self.viewControllers {
+            if let navController = viewController as? UINavigationController {
+                navController.delegate = self
+            }
+        }
+    }
+
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if NCUtils.isiOSAppOnMac() {
+            // When the app is running on MacOS there's a gap between the titleBar and the navigationBar.
+            // We can remove that gap when setting a negative additionalSafeAreaInsets.top
+            navigationController.additionalSafeAreaInsets.top = -navigationController.navigationBar.frame.maxY
+        }
+
+        // The pending chat presentation reached the screen -> nothing to protect anymore
+        if viewController === pendingChatViewController {
+            self.pendingChatViewController = nil
+        }
+
+        if !isCollapsed {
+            return
+        }
+
+        if let navController = self.viewController(for: .secondary) as? UINavigationController,
+           viewController is RoomsTableViewController {
+
+            // A pop to the rooms list raced a pending chat presentation. Don't tear the
+            // chat down — the collapse reconciliation will nest the secondary nav onto
+            // the primary column and display it (see #2328)
+            if let pendingChatViewController,
+               navController.viewControllers.contains(pendingChatViewController) {
+                return
+            }
+
+            // MovingFromParentViewController is always false in case of a rootViewController,
+            // because of this, the chat will never be left in NCChatViewController
+            // (see viewDidDisappear). So we have to leave the chat here, if collapsed
+            getActiveChatViewController()?.leaveChat()
+
+            // Make sure the chatViewController gets properly deallocated
+            let placeholderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "placeholderChatViewController")
+            navController.setViewControllers([placeholderViewController], animated: false)
+
+            // Don't reuse the placeholder from above: moving it into the new navigation controller
+            // would leave the old one with zero viewControllers. While collapsed, UIKit can still
+            // reference the old navigation controller as secondary column content and crashes with
+            // "Cannot display a nested UINavigationController with zero viewControllers"
+            // when collapsing again (see #2328)
+            let newPlaceholderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "placeholderChatViewController")
+            let navController = UINavigationController(rootViewController: newPlaceholderViewController)
+            setViewController(navController, for: .secondary)
+
+            // Instead of always allowing a gesture to be recognized, we need more control here.
+            // See gestureRecognizerShouldBegin.
+            navigationController.interactivePopGestureRecognizer?.delegate = self
+        }
+    }
+
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        // We only want to recognize a "back gesture" through the interactivePopGestureRecognizer
+        // when a chatViewController is shown. Otherwise (on the RoomsTableViewController)
+        // recognizing a gesture might result in an unfinished transition and a broken UI
+        if self.hasActiveChatViewController() {
+            return true
+        }
+
+        return false
+    }
+
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        // Don't use internalExecuteAfterTransition here as that might interfere with presenting the CallViewController from CallKit/Background
+        if !viewControllerToPresent.isBeingPresented {
+            super.present(viewControllerToPresent, animated: flag, completion: completion)
+        }
+    }
+
+    override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        // Showing a non-chat detail (e.g. the placeholder) resolves any pending chat
+        self.pendingChatViewController = vc as? ChatViewController
+
+        self.internalExecuteAfterTransition {
+            if let vc = vc as? UINavigationController {
+                super.showDetailViewController(vc, sender: sender)
+            } else {
+                // Create a new UINavigationController, to not stack up multiple view controllers
+                let navController = UINavigationController(rootViewController: vc)
+
+                // Get notified (didShow) when the chat actually appears on screen,
+                // to resolve a pending chat presentation
+                navController.delegate = self
+
+                super.showDetailViewController(navController, sender: sender)
+
+                if #available(iOS 26.0, *) {
+                    if #unavailable(iOS 26.1) {
+                        // Fix weird animation on iOS 26
+                        vc.view.layoutIfNeeded()
+                    }
+                }
+            }
+        }
+    }
+
+    // Actions that must wait for ongoing transitions, executed strictly in FIFO order.
+    // Executing directly when no transition is ongoing (like we did before) can reorder
+    // actions: an action deferred behind a transition must not be overtaken by an action
+    // that arrives right after that transition finished.
+    private var pendingTransitionActions: [() -> Void] = []
+    private var isWaitingForTransitionToFinish = false
+    private var isDrainingPendingTransitionActions = false
+
+    func internalExecuteAfterTransition(action: @escaping () -> Void) {
+        pendingTransitionActions.append(action)
+        executePendingTransitionActions()
+    }
+
+    private func executePendingTransitionActions() {
+        // A transition completion is already registered and will drain the queue afterwards.
+        // Also don't re-enter when an executing action queues another action — the running
+        // drain loop will pick it up in order.
+        guard !isWaitingForTransitionToFinish, !isDrainingPendingTransitionActions else { return }
+
+        isDrainingPendingTransitionActions = true
+        defer { isDrainingPendingTransitionActions = false }
+
+        while !pendingTransitionActions.isEmpty {
+            // Re-check before every action: an executed action might have started
+            // a new transition that the remaining actions need to wait for
+            if let transitionCoordinator {
+                // Wait until the splitViewController finished all it's animations.
+                // Otherwise this can lead to different UI glitches, for example a chatViewController might
+                // end up in the wrong column. This mainly happens when being in a
+                // conversation and tapping a push notification of another conversation.
+                isWaitingForTransitionToFinish = true
+
+                transitionCoordinator.animate(alongsideTransition: nil, completion: { [weak self] _ in
+                    DispatchQueue.main.async {
+                        self?.isWaitingForTransitionToFinish = false
+                        self?.executePendingTransitionActions()
+                    }
+                })
+
+                return
+            }
+
+            pendingTransitionActions.removeFirst()()
+        }
+    }
+
+    func showPlaceholderView() {
+        // Safe-guard to not show a placeholder view while in collapsed mode
+        if self.isCollapsed {
+            return
+        }
+
+        let placeholderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "placeholderChatViewController")
+        self.showDetailViewController(placeholderViewController, sender: nil)
+    }
+
+    func hasActiveChatViewController() -> Bool {
+        return getActiveChatViewController() != nil
+    }
+
+    func getActiveChatViewController() -> ChatViewController? {
+        return getActiveViewController()
+    }
+
+    func getActiveViewController<T: UIViewController>() -> T? {
+        // In case we have a collapsed view, we need to retrieve the viewController this way
+        if let navController = self.viewController(for: .secondary) as? UINavigationController {
+            for secondaryViewController in navController.viewControllers {
+                if let activeViewController = secondaryViewController as? T {
+                    return activeViewController
+                }
+            }
+        }
+
+        if let navController = self.viewController(for: .primary) as? UINavigationController {
+            for primaryViewController in navController.viewControllers {
+                if let activeViewController = primaryViewController as? T {
+                    return activeViewController
+                }
+            }
+        }
+
+        return nil
+    }
+
+    func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
+        // UIKit throws "Cannot display a nested UINavigationController with zero viewControllers"
+        // when collapsing while the secondary column contains an empty navigation controller,
+        // so restore a placeholder in that case (see #2328)
+        if let navController = self.viewController(for: .secondary) as? UINavigationController,
+           navController.viewControllers.isEmpty {
+
+            let placeholderViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "placeholderChatViewController")
+            navController.setViewControllers([placeholderViewController], animated: false)
+        }
+
+        // When we rotate the device and the splitViewController gets collapsed
+        // we need to determine if we're still in a chat or not.
+        // In case we are, we want to stay in the chat view, else we want to show the roomList
+        if hasActiveChatViewController() {
+            return .secondary
+        }
+
+        return .primary
+    }
+
+    func splitViewControllerDidExpand(_ svc: UISplitViewController) {
+        if !hasActiveChatViewController() {
+            // Set the placeholder view on expand again, to make sure the navigation bar is visible
+            // E.g. Regular -> Join chat, move to compact, leave chat, move to regular again
+            self.showPlaceholderView()
+        }
+    }
+
+    func popSecondaryColumnToRootViewController() {
+        self.internalExecuteAfterTransition {
+            if let navController = self.viewController(for: .secondary) as? UINavigationController {
+                if let chatViewController = self.getActiveChatViewController() {
+                    chatViewController.leaveChat()
+                }
+
+                // No animation -> animated would interfere with room highlighting
+                navController.popToRootViewController(animated: false)
+
+                // This is needed, e.g. when leaving a room on an iPad to remove the chat view on the secondary column
+                self.showPlaceholderView()
+            }
+        }
+    }
+}
