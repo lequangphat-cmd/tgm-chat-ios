@@ -21,20 +21,20 @@ typedef enum NCTextColorStyle {
 
 #pragma mark - App configuration
 
-NSString * const talkAppName = @"Nextcloud Talk";
+NSString * const talkAppName = @"TGM Chat";
 NSString * const filesAppName = @"Nextcloud";
 NSString * const copyright = @"© 2026 Nextcloud GmbH";
-NSString * const bundleIdentifier = @"com.nextcloud.Talk";
-NSString * const groupIdentifier = @"group.com.nextcloud.Talk";
+NSString * const bundleIdentifier = @"net.tgmdental.chat";
+NSString * const groupIdentifier = @"group.net.tgmdental.chat";
 NSString * const appsGroupIdentifier = @"group.com.nextcloud.apps";
-NSString * const pushNotificationServer = @"https://push-notifications.nextcloud.com";
+NSString * const pushNotificationServer = @"https://chat.tgmdental.net/tgm-push";
 NSString * const privacyURL = @"https://nextcloud.com/privacy";
-BOOL const isBrandedApp = NO;
-BOOL const multiAccountEnabled = YES;
-BOOL const useAppsGroup = YES;
-BOOL const forceDomain = NO;
-NSString * const domain = nil;
-NSString * const appAlternateVersion = @"";
+BOOL const isBrandedApp = YES;
+BOOL const multiAccountEnabled = NO;
+BOOL const useAppsGroup = NO;
+BOOL const forceDomain = YES;
+NSString * const domain = @"https://chat.tgmdental.net";
+NSString * const appAlternateVersion = @"1.0.0 (Talk 25.0.2)";
 
 + (NSString *)getAppVersionString
 {
@@ -48,8 +48,8 @@ NSString * const appAlternateVersion = @"";
 
 #pragma mark - Theming
 
-NSString * const brandColorHex = @"#0082C9";
-NSString * const brandTextColorHex = @"#FFFFFF";
+NSString * const brandColorHex = @"#f0c043";
+NSString * const brandTextColorHex = @"#1F2937";
 BOOL const customNavigationLogo = NO;
 BOOL const useServerThemimg = YES;
 

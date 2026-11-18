@@ -508,7 +508,7 @@ private let kShareConfirmationOptionsViewHeight: CGFloat = 44
 
         // Configure communication lib
         guard let userToken = NCKeyChainController.sharedInstance().token(forAccountId: self.account.accountId) else { return }
-        let userAgent = "Mozilla/5.0 (iOS) Nextcloud-Talk v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] ?? "Unknown")"
+        let userAgent = NCAppBranding.userAgent()
 
         NextcloudKit.shared.setup(account: self.account.accountId,
                                   user: self.account.user,

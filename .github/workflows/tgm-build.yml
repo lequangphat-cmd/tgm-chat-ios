@@ -1,0 +1,70 @@
+# SPDX-License-Identifier: MIT
+# TGM Chat iOS build. Phase 1: unsigned simulator build (checks that the branded app compiles).
+# Phase 2 (when the Apple Developer account is ready): signed archive and TestFlight upload.
+
+name: TGM build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  WORKSPACE: NextcloudTalk.xcworkspace
+  SCHEME: NextcloudTalk
+  XCODE_VERSION: "26.5"
+
+jobs:
+  simulator:
+    name: Simulator build
+    runs-on: macos-26
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/cache@v4
+        with:
+          path: Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('Podfile', 'Podfile.lock') }}
+          restore-keys: ${{ runner.os }}-pods-
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ env.XCODE_VERSION }}
+
+      - name: Pod install
+        run: pod install
+
+      - name: Build for simulator
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcbeautify --quieter
+
+      - name: Package simulator app
+        run: |
+          cd DerivedData/Build/Products/Debug-iphonesimulator
+          ditto -c -k --keepParent NextcloudTalk.app "$GITHUB_WORKSPACE/tgm-chat-simulator-${GITHUB_SHA::7}.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tgm-chat-simulator
+          path: tgm-chat-simulator-*.zip
+          retention-days: 14

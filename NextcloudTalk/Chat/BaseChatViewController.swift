@@ -1047,9 +1047,13 @@ import Toast
 
         // Add actions (inverted)
         var objectItems = [UIMenuElement]()
-        objectItems.append(contactShareAction)
+        // TGM: location and contact sharing are app-only (not in the web), hidden to stay in sync with the web
+        if !tgmHideAppOnlyAttachments {
+            objectItems.append(contactShareAction)
+        }
 
-        if NCDatabaseManager.sharedInstance().roomHasTalkCapability(.locationSharing, for: self.room) {
+        if !tgmHideAppOnlyAttachments,
+           NCDatabaseManager.sharedInstance().roomHasTalkCapability(.locationSharing, for: self.room) {
             objectItems.append(shareLocationAction)
         }
 

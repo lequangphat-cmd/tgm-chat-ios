@@ -1,0 +1,6 @@
+NSCameraUsageDescription = "Camera được dùng cho cuộc gọi video";
+NSMicrophoneUsageDescription = "Micro được dùng cho cuộc gọi thoại và video";
+NSPhotoLibraryUsageDescription = "Cần quyền truy cập thư viện ảnh để chia sẻ ảnh và video từ thiết bị";
+NSContactsUsageDescription = "Cần quyền truy cập danh bạ để đối chiếu danh bạ trên máy với người dùng trên máy chủ";
+NSLocationWhenInUseUsageDescription = "Cần quyền vị trí để chia sẻ vị trí của bạn với người khác";
+NSSpeechRecognitionUsageDescription = "Cần quyền nhận dạng giọng nói để chuyển tin nhắn thoại thành văn bản ngay trên thiết bị";
